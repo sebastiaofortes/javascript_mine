@@ -6,6 +6,8 @@ const text = 'An obscure body in the S-K System, your majesty. The inhabitants r
 
 var nonce = 0;
 
+var difficulty = 4;	// nível de dificuldade da prova de trabalho. 
+
 // a função mine deve ser assíncrona pois ela vai ter que esperar com "await" os algorpitmos de criptografia que também sãp assíncronos
 async function mine(text, nonce, difficulty) {
 
@@ -22,9 +24,9 @@ while (!(/^0*$/.test(hash.substring(0, difficulty)))) {  	// verifica se o hash 
 var duracao = Date.now() - antes;       // finaliza a contagem de tempo
 
 alert(hash);
-alert(duracao)
+alert("Tempo de mineração: " + duracao + " ms ");
 }
 
-mine(text, nonce, 4);
+mine(text, nonce, difficulty);
 
 </script>
