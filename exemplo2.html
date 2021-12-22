@@ -1,0 +1,30 @@
+<script src="sha256.js"> // Biblioteca com os algorítmos para a geração de hash's
+</script> 
+<script> 
+
+const text = 'An obscure body in the S-K System, your majesty. The inhabitants refer to it as the planet Earth.';
+
+var nonce = 0;
+
+// a função mine deve ser assíncrona pois ela vai ter que esperar com "await" os algorpitmos de criptografia que também sãp assíncronos
+async function mine(text, nonce, difficulty) {
+
+
+var hash = await digestMessage(nonce + text);  // gera o hash
+
+var antes = Date.now();  		// incia contagem de tempo
+
+while (!(/^0*$/.test(hash.substring(0, difficulty)))) {  	// verifica se o hash atende a prova de trabalho
+            nonce++;
+            hash = await digestMessage(nonce+text);
+        }
+
+var duracao = Date.now() - antes;       // finaliza a contagem de tempo
+
+alert(hash);
+alert(duracao)
+}
+
+mine(text, nonce, 4);
+
+</script>
